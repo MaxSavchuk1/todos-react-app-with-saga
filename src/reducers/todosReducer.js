@@ -76,9 +76,10 @@ function todosReducer (state = initialState, action) {
       const { todos } = state;
       const newTodos = [...todos];
       newTodos.splice(
-        newTodos.findIndex(todo => todo.id === deletedTodo.id),
+        newTodos.findIndex(todo => todo.id === deletedTodo[0].id),
         1
       );
+
       return {
         ...state,
         isFetching: false,

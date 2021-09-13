@@ -1,9 +1,10 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as yup from 'yup';
 import * as actionCreators from './../../actions';
+import styles from './TodoForm.module.sass';
 
 function TodoForm () {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function TodoForm () {
       onSubmit={submitHandler}
       validationSchema={TASK_SCHEMA}
     >
-      <Form>
+      <Form className={styles.formContainer}>
         <Field type='text' name='body' placeholder='Enter todo here' />
         <button type='sumbit'>Submit</button>
       </Form>
