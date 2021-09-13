@@ -1,5 +1,15 @@
+import TodoPage from './pages/TodoPage';
+
 function App () {
-  return <div></div>;
+  return <TodoPage />;
 }
 
 export default App;
+
+/********************************* */
+
+// const date = new Date().toLocaleDateString({
+//   day: 'numeric',
+//   month: 'numeric',
+//   year: 'numeric',
+// });
