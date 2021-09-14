@@ -55,3 +55,22 @@ export const deleteTodoError = error => ({
   type: ACTION_TYPES.DELETE_TODO_ERROR,
   error,
 });
+
+export const statusTodoAction = id => ({
+  type: ACTION_TYPES.STATUS_TODO_ACTION,
+  id,
+});
+
+export const statusTodoRequest = () => ({
+  type: ACTION_TYPES.STATUS_TODO_REQUEST,
+});
+
+export const statusTodoSuccess = id => ({
+  type: ACTION_TYPES.STATUS_TODO_SUCCESS,
+  id,
+});
+
+export const statusTodoError = error => ({
+  type: ACTION_TYPES.STATUS_TODO_ERROR,
+  error,
+});

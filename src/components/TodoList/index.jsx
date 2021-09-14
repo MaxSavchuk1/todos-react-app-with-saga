@@ -8,24 +8,32 @@ import styles from './TodoList.module.sass';
 function TodoList () {
   const { error, isFetching, todos } = useSelector(state => state.todos);
   const dispatch = useDispatch();
-  const { getTodosAction, deleteTodoAction } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const {
+    statusTodoAction,
+    getTodosAction,
+    deleteTodoAction,
+  } = bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     getTodosAction();
   }, [todos]);
 
-  // console.log('in list', todos);
+  console.log(todos);
 
   const mapTodo = ({ body, isDone, id }) => {
     const deleteHandler = () => {
       deleteTodoAction(id);
     };
+    const changeStatusHandler = () => {
+      statusTodoAction(id);
+    };
     return (
       <li key={id}>
-        <input type='checkbox' />
+        <input
+          type='checkbox'
+          checked={isDone}
+          onChange={changeStatusHandler}
+        />
         {body}
         <button onClick={deleteHandler}>
           <DeleteIcon fontSize='small' />

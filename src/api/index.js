@@ -14,3 +14,8 @@ export const deleteTodo = id => {
   const index = todoTasks.findIndex(todo => todo.id === id);
   return Promise.resolve({ data: todoTasks.splice(index, 1) });
 };
+
+export const statusTodo = id => {
+  const index = todoTasks.findIndex(todo => todo.id === id);
+  return Promise.resolve({ data: todoTasks[index].id });
+};

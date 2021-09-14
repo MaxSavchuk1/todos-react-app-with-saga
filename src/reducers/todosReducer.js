@@ -79,7 +79,6 @@ function todosReducer (state = initialState, action) {
         newTodos.findIndex(todo => todo.id === deletedTodo[0].id),
         1
       );
-
       return {
         ...state,
         isFetching: false,
@@ -95,6 +94,37 @@ function todosReducer (state = initialState, action) {
         error,
       };
     }
+
+    case ACTION_TYPES.STATUS_TODO_REQUEST: {
+      return {
+        ...state,
+        isFetching: true,
+        error: null,
+      };
+    }
+
+    case ACTION_TYPES.STATUS_TODO_SUCCESS: {
+      const { id } = action;
+      const { todos } = state;
+      // const newTodos = [...todos];
+      const index = todos.findIndex(todo => todo.id === id);
+      todos[index].isDone = !todos[index].isDone;
+      return {
+        ...state,
+        isFetching: false,
+        // todos: newTodos,
+      };
+    }
+
+    case ACTION_TYPES.STATUS_TODO_ERROR: {
+      const { error } = action;
+      return {
+        ...state,
+        isFetching: false,
+        error,
+      };
+    }
+
     default:
       return state;
   }

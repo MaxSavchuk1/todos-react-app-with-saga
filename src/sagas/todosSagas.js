@@ -34,3 +34,14 @@ export function * deleteTodoSaga (action) {
     yield put(ACT.deleteTodoError(error));
   }
 }
+
+export function * statusTodoSaga (action) {
+  const { id } = action;
+  yield put(ACT.statusTodoRequest());
+  try {
+    const { data: index } = yield API.statusTodo(id);
+    yield put(ACT.statusTodoSuccess(index));
+  } catch (error) {
+    yield put(ACT.statusTodoError(error));
+  }
+}
