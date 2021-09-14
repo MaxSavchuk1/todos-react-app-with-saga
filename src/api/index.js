@@ -1,4 +1,4 @@
-const todoTasks = [];
+const todoTasks = [{ id: Date.now(), body: 'Do something', isDone: false }];
 
 export const getTodos = () => {
   return Promise.resolve({ data: todoTasks });

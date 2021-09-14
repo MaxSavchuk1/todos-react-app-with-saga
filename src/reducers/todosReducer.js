@@ -44,12 +44,12 @@ function todosReducer (state = initialState, action) {
     }
 
     case ACTION_TYPES.CREATE_TODO_SUCCESS: {
-      const { todo } = action;
-      const { todos } = state;
-      const newTodos = [...todos, todo];
+      // const { todo } = action;
+      // const { todos } = state;
+      // const newTodos = [...todos, todo];
       return {
         ...state,
-        todos: newTodos,
+        // todos: newTodos,
         isFetching: false,
       };
     }

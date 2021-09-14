@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,10 +9,15 @@ function TodoList () {
   const { error, isFetching, todos } = useSelector(state => state.todos);
   const dispatch = useDispatch();
   const { getTodosAction, deleteTodoAction } = bindActionCreators(
-    //зачем мне getTodosAction? для подгрузки тудушек через АПИ?
     actionCreators,
     dispatch
   );
+
+  useEffect(() => {
+    getTodosAction();
+  }, [todos]);
+
+  // console.log('in list', todos);
 
   const mapTodo = ({ body, isDone, id }) => {
     const deleteHandler = () => {
