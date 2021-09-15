@@ -44,8 +44,13 @@ function todosReducer (state = initialState, action) {
     }
 
     case ACTION_TYPES.CREATE_TODO_SUCCESS: {
+      const { todo } = action;
+      const { todos } = state;
+      const newTodos = [...todos];
+      newTodos.push(todo);
       return {
         ...state,
+        todos: newTodos,
         isFetching: false,
       };
     }
@@ -102,10 +107,12 @@ function todosReducer (state = initialState, action) {
     case ACTION_TYPES.STATUS_TODO_SUCCESS: {
       const { id } = action;
       const { todos } = state;
-      const index = todos.findIndex(todo => todo.id === id);
-      todos[index].isDone = !todos[index].isDone;
+      const newTodos = [...todos];
+      const index = newTodos.findIndex(todo => todo.id === id);
+      newTodos[index].isDone = !newTodos[index].isDone;
       return {
         ...state,
+        todos: newTodos,
         isFetching: false,
       };
     }
