@@ -6,7 +6,7 @@ import * as actionCreators from './../../actions';
 import styles from './TodoList.module.sass';
 
 function TodoList () {
-  const { error, isFetching, todos } = useSelector(state => state.todos);
+  const { todos } = useSelector(state => state.todos);
   const dispatch = useDispatch();
   const {
     statusTodoAction,
@@ -18,7 +18,7 @@ function TodoList () {
     getTodosAction();
   }, [todos]);
 
-  console.log(todos);
+  console.log(todos); //почему он рендерит несколько раз? надо разобраться... получается сначала он грузит тудушки из локального state, а потом подгружает через API? useEffect выполняется после каждого рендера. Истина где-то рядом...
 
   const mapTodo = ({ body, isDone, id }) => {
     const deleteHandler = () => {
