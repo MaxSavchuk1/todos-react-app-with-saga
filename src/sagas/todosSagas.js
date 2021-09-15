@@ -14,7 +14,6 @@ export function * getTodosSaga () {
 
 export function * createTodoSaga (action) {
   const { todo } = action;
-
   yield put(ACT.createTodoRequest());
   try {
     const { data: newTodo } = yield API.createTodo(todo);

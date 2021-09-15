@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from './../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './TodoList.module.sass';
+import * as actionCreators from './../../actions';
 
 function TodoList () {
   const { todos } = useSelector(state => state.todos);
@@ -17,8 +17,6 @@ function TodoList () {
   useEffect(() => {
     getTodosAction();
   }, []);
-
-  console.log(todos); //почему он рендерит несколько раз? надо разобраться... получается сначала он грузит тудушки из локального state, а потом подгружает через API? useEffect выполняется после каждого рендера. Истина где-то рядом...
 
   const mapTodo = ({ body, isDone, id }) => {
     const deleteHandler = () => {

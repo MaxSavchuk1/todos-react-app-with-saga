@@ -8,6 +8,7 @@ const initialState = {
 
 function todosReducer (state = initialState, action) {
   const { type } = action;
+
   switch (type) {
     case ACTION_TYPES.GET_TODOS_REQUEST: {
       return {
@@ -19,10 +20,11 @@ function todosReducer (state = initialState, action) {
 
     case ACTION_TYPES.GET_TODOS_SUCCESS: {
       const { todos } = action;
+      const newTodos = [...todos];
       return {
         ...state,
         isFetching: false,
-        todos: todos,
+        todos: newTodos,
       };
     }
 
@@ -46,8 +48,7 @@ function todosReducer (state = initialState, action) {
     case ACTION_TYPES.CREATE_TODO_SUCCESS: {
       const { todo } = action;
       const { todos } = state;
-      const newTodos = [...todos];
-      newTodos.push(todo);
+      const newTodos = [...todos, todo];
       return {
         ...state,
         todos: newTodos,
