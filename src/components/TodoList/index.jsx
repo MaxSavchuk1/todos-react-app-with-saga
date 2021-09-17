@@ -6,7 +6,7 @@ import styles from './TodoList.module.sass';
 import * as actionCreators from './../../actions';
 
 function TodoList () {
-  const { todos } = useSelector(state => state.todos);
+  const { todos, error, isFetching } = useSelector(state => state.todos);
   const dispatch = useDispatch();
   const {
     statusTodoAction,
@@ -40,7 +40,13 @@ function TodoList () {
     );
   };
 
-  return <ul className={styles.listContainer}>{todos.map(mapTodo)}</ul>;
+  return (
+    <>
+      {isFetching && <div>Loading...</div>}
+      {error && <div>ERROR</div>}
+      <ul className={styles.listContainer}>{todos.map(mapTodo)}</ul>
+    </>
+  );
 }
 
 export default TodoList;
